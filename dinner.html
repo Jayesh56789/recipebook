@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- jQuery -->
+<script src="path/to/jquery.min.js"></script>
+<!-- Bootstrap JavaScript -->
+<script src="path/to/bootstrap.min.js"></script>
+
+    <title>TITLE HERE</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+        <div class="container">
+            <a href="../index.html" class="navbar-brand"> <i class="bi bi-journal"></i> Recipe Book</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="breakfast.html" class="nav-link">Breakfast</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="lunch.html" class="nav-link">Lunch</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="dinner.html" class="nav-link">Dinner</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="dessert.html" class="nav-link">Dessert</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="drinks.html" class="nav-link">Drinks</a>
+                    </li>
+                    <li class="nav-item">                    
+                </li>
+                <form class="collapse navbar-collapse" id="menu">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search" placeholder="Search recipes" oninput="searchRecipes()">
+                    </div>
+                </form>
+                </ul>               
+            </div>
+        </div>
+    </nav>
+
+    <!-- Showcase -->
+    <section class="bg-dark text-light p-5 p-lg-0 pt-lg-5 text-center text-sm-start">
+        <div class="container">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <div>
+                    <h1>Welcome <span class="text-success">To </span> Recipe Book</h1>
+                    <p class="lead my-4">
+                        Discover a world of delicious recipes at your fingertips. Whether you're a seasoned chef or a beginner in the kitchen, our Recipe Book app has something for everyone.
+             </p>                    
+                </div>
+                <img class="img-fluid w-50 d-none d-sm-block" src="C:\Users\Jayesh\Desktop\UM\RecipeBOOKKK\images\chef.svg" alt="Chef" />
+            </div>
+        </div>
+    </section>
+    <section>
+        <div>
+            <div class="container">
+                <h1>Recipe Book</h1>
+                <!-- Recipe List -->
+                <h2>Recipes</h2>
+                <div class="row text-center" id="recipe-list">
+                    <!-- Recipe cards will be added here -->
+                </div>               
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="preparationModal" tabindex="-1" role="dialog" aria-labelledby="preparationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="preparationModalLabel">Preparation Steps</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="preparationModalCloseButton">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="preparationModalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+     <!-- Clear All Recipes Button -->
+     <!-- <button id="clear-button" class="btn btn-danger" onclick="clearRecipes()">Clear All Recipes</button> -->
+
+     <section class="my-5">
+        <h2 class="text-center mb-4">ADD YOUR RECIPES</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card border-black">
+                    <div class="card-body">
+                        <form id="recipe-form">
+                            <div class="mb-3">
+                                <label for="recipe-name" class="form-label">Recipe Name:</label>
+                                <input type="text" class="form-control" id="recipe-name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipe-description" class="form-label">Ingredients:</label>
+                                <textarea class="form-control" id="recipe-description" rows="2" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="preparation-steps" class="form-label">Preparation Steps:</label>
+                                <textarea class="form-control" id="preparation-steps" rows="2" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="recipe-image" class="form-label">Image:</label>
+                                <input type="file" class="form-control" id="recipe-image" accept="image/*" required>
+                            </div>
+                            <button type="button" class="btn btn-danger" onclick="addRecipe()">Add Recipe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <!-- Footer -->
+    <footer class="p-5 bg-dark text-white text-center position-relative">
+        <div class="container">
+            <p class="lead">All rights reserved to their respective owners.</p>
+
+            <a href="#" class="position-absolute bottom-0 end-0 p-5">
+                <i class="bi bi-arrow-up-circle h1"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    
+        <script>
+            // Define an array to store dinner recipes
+            let dinnerRecipes = JSON.parse(localStorage.getItem('dinnerRecipes')) || [];
+    
+            // Function to perform the selected action
+            function performAction() {
+                const action = document.querySelector('input[name="action"]:checked').value;
+                if (action === 'add') {
+                    addRecipe();
+                } else if (action === 'update') {
+                    updateRecipe();
+                }
+            }
+    
+            // Function to add a new recipe
+            function addRecipe() {
+                const name = document.getElementById('recipe-name').value;
+                const description = document.getElementById('recipe-description').value;
+                const imageInput = document.getElementById('recipe-image');
+                const imageFile = imageInput.files[0];
+                const preparationSteps = document.getElementById('preparation-steps').value;
+    
+                if (name && description && imageFile && preparationSteps) {
+                    const reader = new FileReader();
+                    reader.onload = function () {
+                        const image = reader.result;
+    
+                        const recipe = { name, description, image, preparationSteps };
+                        dinnerRecipes.push(recipe);
+    
+                        // Save recipes to local storage with the key 'dinnerRecipes'
+                        localStorage.setItem('dinnerRecipes', JSON.stringify(dinnerRecipes));
+    
+                        // Clear the form fields
+                        document.getElementById('recipe-name').value = '';
+                        document.getElementById('recipe-description').value = '';
+                        imageInput.value = '';
+                        document.getElementById('preparation-steps').value = '';
+    
+                        displayRecipes();
+                    };
+    
+                    reader.readAsDataURL(imageFile);
+                }
+            }
+    
+            // Function to clear all recipes
+            function clearRecipes() {
+                dinnerRecipes.length = 0;
+                localStorage.removeItem('dinnerRecipes');
+                displayRecipes();
+            }
+    
+            // Function to display recipes
+            function displayRecipes() {
+                const recipeList = document.getElementById('recipe-list');
+                recipeList.innerHTML = '';
+    
+                for (let i = 0; i < dinnerRecipes.length; i++) {
+                    if (i % 3 === 0) {
+                        // Create a new row for every 3 recipes
+                        const row = document.createElement('div');
+                        row.classList.add('row');
+                        recipeList.appendChild(row);
+                    }
+    
+                    const recipe = dinnerRecipes[i];
+    
+                    const recipeCard = document.createElement('div');
+                    recipeCard.classList.add('col-md-4'); // Changed the column size to 4 for better visibility
+                    recipeCard.innerHTML = `
+                        <div class="card bg-dark text-light">
+                            <div class="card-body text-center">
+                                <img src="${recipe.image}" class="img-thumbnail img-fluid" alt="Recipe Image" style="width: 150px; height: 150px;">
+                                <h3 class="card-title">${recipe.name}</h3>
+                                <button class="btn btn-primary" onclick="showPreparationModal('${recipe.preparationSteps.replace(/\n/g, '<br>')}','${recipe.description.replace(/\n/g, '<br>')}')">View Preparation Steps</button>
+                            </div>
+                        </div>
+                    `;
+    
+                    // Append the recipe card to the current row
+                    recipeList.lastChild.appendChild(recipeCard);
+                }
+            }
+    
+            function showPreparationModal(preparationSteps, description) {
+                // Get the modal body element
+                const modalBody = document.getElementById('preparationModalBody');
+    
+                // Clear any existing content in the modal body
+                modalBody.innerHTML = '';
+                // Append the description to the modal body
+                modalBody.insertAdjacentHTML('beforeend', `<p><strong>Description:</strong> ${description}</p>`);
+    
+                // Append the preparation steps to the modal body
+                modalBody.insertAdjacentHTML('beforeend', `<p><strong>Preparation Steps:</strong>${preparationSteps}</p>`);
+    
+                // Show the modal
+                const modal = new bootstrap.Modal(document.getElementById('preparationModal'));
+                modal.show();
+                // Close the modal when the close button is clicked
+                const closeButton = document.getElementById('preparationModalCloseButton');
+                closeButton.addEventListener('click', function () {
+                    modal.hide();
+                });
+            }
+    // Function to filter recipes based on the search input
+    function searchRecipes() {
+        var input, filter, cards, card, title, i;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        cards = document.querySelectorAll(".card");
+
+        // Loop through all recipe cards and hide those that do not match the search query
+        for (i = 0; i < cards.length; i++) {
+            card = cards[i];
+            title = card.querySelector(".card-title");
+
+            if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        }
+    }
+            // Initial display of recipes
+            displayRecipes();
+        </script>
+       <!-- jQuery -->
+<script src="path/to/jquery.min.js"></script> 
+</body>
+
+</html>
